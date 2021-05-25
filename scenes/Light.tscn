@@ -3,4 +3,5 @@
 [ext_resource path="res://sprites/light.png" type="Texture" id=1]
 
 [node name="Light" type="Sprite"]
+visible = false
 texture = ExtResource( 1 )
