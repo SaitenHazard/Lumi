@@ -10,15 +10,21 @@ var left_mousebutton_pressed : bool = false
 var _offset : float 
 var cell_size : float
 
-func _ready():
+func get_coordinate() -> Vector2:
+	return coordinate
+	
+func get_direction() -> Vector2:
+	return coordinate
+
+func _ready() -> void:
 	_offset = Tiles.get_positon_offset()
 	cell_size = Tiles.get_cell_size()
 
-func _process(delta) -> void :
+func _process(delta) -> void:
 	_set_position()
 	_set_direction()
 
-func _set_direction():
+func _set_direction() -> void:
 	if direction == Vector2(0,-1):
 		self.rotation = deg2rad(0)
 	elif direction == Vector2(1, 0):
@@ -60,7 +66,7 @@ func _change_direction(event) -> void:
 		else:
 			direction = Vector2(0,-1)
 
-func _set_coordinate():
+func _set_coordinate() -> void:
 	var mouse_coordinate : Vector2 = Vector2.ZERO
 	var mouse_position = get_viewport().get_mouse_position()
 	mouse_coordinate.x = round((mouse_position.x - _offset) / cell_size)

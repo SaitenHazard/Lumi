@@ -1,7 +1,9 @@
-[gd_scene load_steps=4 format=2]
+[gd_scene load_steps=6 format=2]
 
 [ext_resource path="res://scenes/Tiles.gd" type="Script" id=1]
+[ext_resource path="res://scenes/mirror.tscn" type="PackedScene" id=2]
 [ext_resource path="res://scenes/gun.tscn" type="PackedScene" id=3]
+[ext_resource path="res://scenes/Mirror.gd" type="Script" id=4]
 
 [sub_resource type="GDScript" id=1]
 
@@ -10,7 +12,15 @@
 [node name="ObjectManager" type="Node2D" parent="."]
 script = SubResource( 1 )
 
-[node name="Gun" parent="ObjectManager" instance=ExtResource( 3 )]
+[node name="Guns" type="Node2D" parent="ObjectManager"]
+
+[node name="Gun" parent="ObjectManager/Guns" instance=ExtResource( 3 )]
+
+[node name="Mirros" type="Node2D" parent="ObjectManager"]
+
+[node name="Mirror" parent="ObjectManager/Mirros" instance=ExtResource( 2 )]
+script = ExtResource( 4 )
+coordinate = Vector2( 6, 6 )
 
 [node name="Tiles" type="Node2D" parent="."]
 position = Vector2( 0, 2 )
