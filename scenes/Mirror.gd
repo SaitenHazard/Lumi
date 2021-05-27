@@ -15,7 +15,6 @@ func _set_direction() -> void:
 func place_lights(var light_in_direction:Vector2)->void:
 	print(light_in_direction)
 	var reflected_light_direction = get_reflected_direction(light_in_direction)
-	print(reflected_light_direction)
 	.place_lights(reflected_light_direction)
 
 func get_reflected_direction(light_direction)->Vector2:

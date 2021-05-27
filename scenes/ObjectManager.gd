@@ -17,7 +17,7 @@ func _initialize_guns() -> void:
 	guns = get_node('Guns').get_children()
 	
 func _initialize_filters() -> void:
-	guns = get_node('Guns').get_children()
+	filters = get_node('Filters').get_children()
 
 func replace_lights_all() -> void:
 	deplace_lights_all()
@@ -29,7 +29,6 @@ func deplace_lights_all()->void:
 	deplace_lights_mirrors()
 	
 func place_lights_guns() -> void:
-	print(guns.size())
 	for i in (guns.size()):
 		guns[i].place_lights(Vector2(-1,-1))
 
@@ -47,16 +46,16 @@ func deplace_lights_mirrors() -> void:
 
 func get_interaction_object(var coordinate : Vector2) -> Sprite:
 	var object : Sprite = _get_mirror(coordinate)
-	if object!=null:
+	if object!=null && object.get_being_dragged() == false:
 		return object
 	object = _get_gun(coordinate)
-	if object!=null:
+	if object!=null && object.get_being_dragged() == false:
 		return object
 	object = _get_filters(coordinate)
-	if object!=null:
+	if object!=null && object.get_being_dragged() == false:
 		return object 
-		
 	return null
+	
 
 func _get_mirror(var coordinate : Vector2):
 	for i in range(mirrors.size()):

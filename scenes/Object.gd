@@ -17,6 +17,9 @@ var being_dragged : bool = false
 var _offset : float 
 var cell_size : float
 
+func get_being_dragged() -> bool:
+	return being_dragged
+
 func get_coordinate() -> Vector2:
 	return coordinate
 	
