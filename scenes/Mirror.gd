@@ -1,7 +1,5 @@
 extends GameObject
 
-onready var ObjectManager = get_node('/root/Game/ObjectManager')
-
 func _set_direction() -> void:
 	if direction == Vector2(0,-1) or direction == Vector2(0, 1):
 		self.flip_v = false

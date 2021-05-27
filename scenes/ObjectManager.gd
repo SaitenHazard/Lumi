@@ -6,7 +6,6 @@ onready var guns : Array
 func _ready():
 	call_deferred('_initialize_mirrors')
 	call_deferred('_initialize_guns')
-	call_deferred('get_mirror', Vector2(6,6))
 
 func _initialize_mirrors() -> Array:
 	mirrors = get_node('Mirrors').get_children()
