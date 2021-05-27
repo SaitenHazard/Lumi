@@ -10,12 +10,12 @@ config_version=4
 
 _global_script_classes=[ {
 "base": "Sprite",
-"class": "Game_object",
+"class": "GameObject",
 "language": "GDScript",
 "path": "res://scenes/Object.gd"
 } ]
 _global_script_class_icons={
-"Game_object": ""
+"GameObject": ""
 }
 
 [application]

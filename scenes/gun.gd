@@ -1,4 +1,4 @@
-extends Game_object
+extends GameObject
 
 onready var LIGHT = preload("res://scenes/Light.tscn")
 
@@ -19,7 +19,7 @@ func _on_Area2D_input_event(viewport, event, shape_idx) -> void:
 			_manage_lights(event)
 		if event.button_index == BUTTON_RIGHT and event.is_pressed() == false:
 			replace_lights()
-			
+
 func _manage_lights(event)->void:
 	if event.is_pressed():
 		_deplace_lights()

@@ -1,10 +1,11 @@
-[gd_scene load_steps=6 format=2]
+[gd_scene load_steps=7 format=2]
 
 [ext_resource path="res://scenes/Tiles.gd" type="Script" id=1]
 [ext_resource path="res://scenes/mirror.tscn" type="PackedScene" id=2]
 [ext_resource path="res://scenes/gun.tscn" type="PackedScene" id=3]
 [ext_resource path="res://scenes/Mirror.gd" type="Script" id=4]
 [ext_resource path="res://scenes/ObjectManager.gd" type="Script" id=5]
+[ext_resource path="res://scenes/Filter.tscn" type="PackedScene" id=6]
 
 [node name="Game" type="Node2D"]
 
@@ -20,6 +21,11 @@ script = ExtResource( 5 )
 [node name="Mirror" parent="ObjectManager/Mirrors" instance=ExtResource( 2 )]
 script = ExtResource( 4 )
 coordinate = Vector2( 6, 6 )
+
+[node name="Filters" type="Node2D" parent="ObjectManager"]
+
+[node name="Filter" parent="ObjectManager/Filters" instance=ExtResource( 6 )]
+coordinate = Vector2( 7, 7 )
 
 [node name="Tiles" type="Node2D" parent="."]
 position = Vector2( 0, 2 )

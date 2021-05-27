@@ -1,6 +1,6 @@
 extends Sprite
 
-class_name Game_object
+class_name GameObject
 
 onready var Tiles = get_node('/root/Game/Tiles')
 export var coordinate : Vector2 = Vector2(5,5)

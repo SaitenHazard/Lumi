@@ -1,4 +1,4 @@
-extends Game_object
+extends GameObject
 
 onready var ObjectManager = get_node('/root/Game/ObjectManager')
 
