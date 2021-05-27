@@ -12,9 +12,9 @@ func _on_Area2D_input_event(viewport, event, shape_idx) -> void:
 		if event.is_pressed() == false:
 			ObjectManager.replace_all_lights()
 
-func _place_reflected_light(var light_direction:Vector2)->void:
+func place_reflected_lights(var light_direction:Vector2)->void:
 	var reflected_light_direction = get_reflected_direction(light_direction)
-	._place_lights(reflected_light_direction)
+	.place_lights(reflected_light_direction)
 
 func get_reflected_direction(light_direction)->Vector2:
 	if direction == Vector2(0, 1) || direction == Vector2(0,-1):

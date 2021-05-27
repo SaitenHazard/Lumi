@@ -2,7 +2,7 @@ extends GameObject
 
 func _ready():
 	._ready()
-	._place_lights(direction)
+	.place_lights(direction)
 
 func _on_Area2D_input_event(viewport, event, shape_idx) -> void:
 	._on_Area2D_input_event(viewport, event, shape_idx)
@@ -14,6 +14,6 @@ func _on_Area2D_input_event(viewport, event, shape_idx) -> void:
 
 func _manage_lights(event)->void:
 	if event.is_pressed():
-		._deplace_lights()
+		.deplace_lights()
 	else:
-		._place_lights(direction)
+		.place_lights(direction)

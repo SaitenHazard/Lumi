@@ -17,7 +17,7 @@ var left_mousebutton_pressed : bool = false
 var _offset : float 
 var cell_size : float
 
-var light_interacted_with = null
+var interacted_with = null
 
 func get_coordinate() -> Vector2:
 	return coordinate
@@ -90,21 +90,24 @@ func _spawn_lights()->void:
 		get_node('/root/Game/Tiles').add_child(light)
 
 func replace_lights()->void:
-	_deplace_lights()
-	_place_lights(direction)
+	deplace_lights()
+	place_lights(direction)
 
-func _deplace_lights()->void:
+func deplace_lights()->void:
 	for i in range(lights.size()):
 		lights[i].visible = false
+	print('in')
+	if interacted_with != null:
+		interacted_with.deplace_lights()
+		interacted_with = null
 
-func _place_lights(direction : Vector2)->void:
-	print(lights.size())
+func place_lights(direction : Vector2)->void:
 	for i in range(lights.size()):
 		var light_coordinate = Vector2(
 			coordinate.x + ((i+1)*direction.x), coordinate.y + ((i+1)*direction.y))
-		var mirror  = ObjectManager.get_mirror(light_coordinate)
-		if(mirror!=null):
-			mirror._place_reflected_light(direction)
+		interacted_with  = ObjectManager.get_mirror(light_coordinate)
+		if(interacted_with != null):
+			interacted_with.place_reflected_lights(direction)
 			break
 		lights[i].visible = true
 		lights[i].position = Vector2(
