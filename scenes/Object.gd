@@ -14,7 +14,7 @@ func get_coordinate() -> Vector2:
 	return coordinate
 	
 func get_direction() -> Vector2:
-	return coordinate
+	return direction
 
 func _ready() -> void:
 	_offset = Tiles.get_positon_offset()
