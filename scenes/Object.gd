@@ -13,11 +13,9 @@ export var coordinate : Vector2 = Vector2(5,5)
 export var direction : Vector2 = Vector2(0,-1)
 export var lights : Array
 
-var left_mousebutton_pressed : bool = false
+var being_dragged : bool = false
 var _offset : float 
 var cell_size : float
-
-var interacted_with = null
 
 func get_coordinate() -> Vector2:
 	return coordinate
@@ -45,7 +43,7 @@ func _set_direction() -> void:
 		self.rotation = deg2rad(-90)
 
 func _set_position() -> void :
-	if left_mousebutton_pressed == false:
+	if being_dragged == false:
 		self.position = Vector2(
 		_offset + coordinate.x * cell_size, _offset + coordinate.y * cell_size)
 	else:
@@ -58,12 +56,13 @@ func _on_Area2D_input_event(viewport, event, shape_idx) -> void:
 			_set_coordinate()
 		elif event.button_index == BUTTON_RIGHT:
 			_change_direction(event)
+		ObjectManager.replace_lights_all()
 
 func _drag_drop(event) -> void:
 	if event.is_pressed():
-		left_mousebutton_pressed = true
+		being_dragged = true
 	else:
-		left_mousebutton_pressed = false
+		being_dragged = false
 
 func _change_direction(event) -> void:
 	if event.is_pressed() == false:
@@ -84,30 +83,28 @@ func _set_coordinate() -> void:
 	coordinate = mouse_coordinate
 	
 func _spawn_lights()->void:
+	var root_game = get_node('/root/Game/ObjectManager/Lights')
 	for i in range(max_lights):
 		var light =  LIGHT.duplicate()
 		lights.push_back(light)
-		get_node('/root/Game/Tiles').add_child(light)
-
-func replace_lights()->void:
-	deplace_lights()
-	place_lights(direction)
+		root_game.add_child(light)
 
 func deplace_lights()->void:
 	for i in range(lights.size()):
 		lights[i].visible = false
-	print('in')
-	if interacted_with != null:
-		interacted_with.deplace_lights()
-		interacted_with = null
 
-func place_lights(direction : Vector2)->void:
+func place_lights(var light_direction : Vector2)->void:
+	if being_dragged:
+		return
+	if light_direction == Vector2(-1,-1):
+		light_direction = direction
+		
 	for i in range(lights.size()):
 		var light_coordinate = Vector2(
-			coordinate.x + ((i+1)*direction.x), coordinate.y + ((i+1)*direction.y))
-		interacted_with  = ObjectManager.get_mirror(light_coordinate)
+			coordinate.x + ((i+1)*light_direction.x), coordinate.y + ((i+1)*light_direction.y))
+		var interacted_with  = ObjectManager.get_interaction_object(light_coordinate)
 		if(interacted_with != null):
-			interacted_with.place_reflected_lights(direction)
+			interacted_with.place_lights(light_direction)
 			break
 		lights[i].visible = true
 		lights[i].position = Vector2(

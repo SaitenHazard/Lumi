@@ -27,6 +27,8 @@ coordinate = Vector2( 6, 6 )
 [node name="Filter" parent="ObjectManager/Filters" instance=ExtResource( 6 )]
 coordinate = Vector2( 7, 7 )
 
+[node name="Lights" type="Node2D" parent="ObjectManager"]
+
 [node name="Tiles" type="Node2D" parent="."]
 position = Vector2( 0, 2 )
 script = ExtResource( 1 )
