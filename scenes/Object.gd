@@ -2,8 +2,11 @@ extends Sprite
 
 class_name GameObject
 
+onready var ObjectManager = get_node('/root/Game/ObjectManager')
+
 onready var TILES = get_node('/root/Game/Tiles')
 onready var LIGHT = get_node("Light")
+
 onready var max_lights : float = TILES.get_mapsize().x
 
 export var coordinate : Vector2 = Vector2(5,5)
@@ -14,7 +17,7 @@ var left_mousebutton_pressed : bool = false
 var _offset : float 
 var cell_size : float
 
-onready var ObjectManager = get_node('/root/Game/ObjectManager')
+var light_interacted_with = null
 
 func get_coordinate() -> Vector2:
 	return coordinate
@@ -23,6 +26,7 @@ func get_direction() -> Vector2:
 	return direction
 
 func _ready() -> void:
+	_spawn_lights()
 	_offset = TILES.get_positon_offset()
 	cell_size = TILES.get_cell_size()
 
@@ -81,29 +85,27 @@ func _set_coordinate() -> void:
 	
 func _spawn_lights()->void:
 	for i in range(max_lights):
-		var light =  LIGHT.instance()
+		var light =  LIGHT.duplicate()
 		lights.push_back(light)
 		get_node('/root/Game/Tiles').add_child(light)
 
 func replace_lights()->void:
 	_deplace_lights()
-	_place_lights()
+	_place_lights(direction)
 
 func _deplace_lights()->void:
 	for i in range(lights.size()):
 		lights[i].visible = false
 
-func _place_lights()->void:
+func _place_lights(direction : Vector2)->void:
+	print(lights.size())
 	for i in range(lights.size()):
 		var light_coordinate = Vector2(
 			coordinate.x + ((i+1)*direction.x), coordinate.y + ((i+1)*direction.y))
 		var mirror  = ObjectManager.get_mirror(light_coordinate)
 		if(mirror!=null):
-			var reflected_direction = mirror.get_reflected_direction(direction)
+			mirror._place_reflected_light(direction)
 			break
-		_set_light_position(lights[i], light_coordinate)
-
-func _set_light_position(light, light_coordinate) -> void:
-	light.visible = true
-	light.position = Vector2(
+		lights[i].visible = true
+		lights[i].position = Vector2(
 		self._offset + light_coordinate.x * self.cell_size, self._offset + light_coordinate.y * self.cell_size)
