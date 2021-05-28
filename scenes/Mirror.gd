@@ -6,16 +6,10 @@ func _set_direction() -> void:
 	elif direction == Vector2(1, 0) or direction == Vector2(-1, 0):
 		self.flip_v = true
 
-#func _on_Area2D_input_event(viewport, event, shape_idx) -> void:
-#	._on_Area2D_input_event(viewport, event, shape_idx)
-#	if event is InputEventMouseButton:
-#		if event.is_pressed() == false:
-#			deplace_lights()
-
-func place_lights(var light_in_direction:Vector2)->void:
-	print(light_in_direction)
+func place_lights(var light_in_direction:Vector2, var tex : Texture = null)->void:
+	print(tex.get_name())
 	var reflected_light_direction = get_reflected_direction(light_in_direction)
-	.place_lights(reflected_light_direction)
+	.place_lights(reflected_light_direction, tex)
 
 func get_reflected_direction(light_direction)->Vector2:
 	if direction == Vector2(0, 1) || direction == Vector2(0,-1):
