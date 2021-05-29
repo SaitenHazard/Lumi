@@ -12,22 +12,23 @@
 [node name="ObjectManager" type="Node2D" parent="."]
 script = ExtResource( 5 )
 
+[node name="Lights" type="Node2D" parent="ObjectManager"]
+
 [node name="Guns" type="Node2D" parent="ObjectManager"]
 
 [node name="Gun" parent="ObjectManager/Guns" instance=ExtResource( 3 )]
+coordinate = Vector2( 2, 2 )
 
 [node name="Mirrors" type="Node2D" parent="ObjectManager"]
 
 [node name="Mirror" parent="ObjectManager/Mirrors" instance=ExtResource( 2 )]
 script = ExtResource( 4 )
-coordinate = Vector2( 6, 6 )
+coordinate = Vector2( 3, 3 )
 
 [node name="Filters" type="Node2D" parent="ObjectManager"]
 
 [node name="Filter" parent="ObjectManager/Filters" instance=ExtResource( 6 )]
-coordinate = Vector2( 7, 7 )
-
-[node name="Lights" type="Node2D" parent="ObjectManager"]
+coordinate = Vector2( 4, 4 )
 
 [node name="Tiles" type="Node2D" parent="."]
 position = Vector2( 0, 2 )

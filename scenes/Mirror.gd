@@ -1,32 +1,42 @@
 extends GameObject
 
-func _set_direction() -> void:
-	if direction == Vector2(0,-1) or direction == Vector2(0, 1):
-		self.flip_v = false
-	elif direction == Vector2(1, 0) or direction == Vector2(-1, 0):
-		self.flip_v = true
-
-func place_lights(var light_in_direction:Vector2, var tex : Texture = null)->void:
-	print(tex.get_name())
+func place_lights(var light_in_direction, var tex : Texture = null)->void:
 	var reflected_light_direction = get_reflected_direction(light_in_direction)
-	.place_lights(reflected_light_direction, tex)
+	print(reflected_light_direction)
+	if reflected_light_direction != null:
+		.place_lights(reflected_light_direction, tex)
 
-func get_reflected_direction(light_direction)->Vector2:
-	if direction == Vector2(0, 1) || direction == Vector2(0,-1):
-		if light_direction == Vector2(1,0):
-			return Vector2(0,1)
-		elif light_direction == Vector2(-1,0):
-			return Vector2(0,-1)
-		elif light_direction == Vector2(0,1):
-			return Vector2(1,0)
+func get_reflected_direction(light_direction):
+#	print(light_direction == direction_right)
+#	print(direction == direction_down)
+	if light_direction == direction_right:
+		if direction == direction_down:
+			return direction_down
+		elif direction == direction_left:
+			return direction_up
 		else:
-			return Vector2(-1,0)
-	else:
-		if light_direction == Vector2(1,0):
-			return Vector2(0,-1)
-		elif light_direction == Vector2(-1,0):
-			return Vector2(0,1)
-		elif light_direction == Vector2(0,1):
-			return Vector2(-1,0)
+			return null
+			
+	if light_direction == direction_down:
+		if direction == direction_up:
+			return direction_right
+		elif direction == direction_left:
+			return direction_left
 		else:
-			return Vector2(1,0)
+			return null
+			
+	if light_direction == direction_left:
+		if direction == direction_up:
+			return direction_up
+		elif direction == direction_right:
+			return direction_down
+		else:
+			return null
+	
+	if light_direction == direction_up:
+		if direction == direction_right:
+			return direction_right
+		elif direction == direction_down:
+			return direction_left
+		else:
+			return null

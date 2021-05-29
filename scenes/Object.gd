@@ -1,7 +1,11 @@
 extends Sprite
 
-class_name GameObject
+const direction_up : Vector2 = Vector2(0,-1)
+const direction_down : Vector2 = Vector2(0,1)
+const direction_left : Vector2 = Vector2(-1,0)
+const direction_right : Vector2 = Vector2(1,0)
 
+class_name GameObject
 
 onready var tex_light_white = load("res://sprites/light.png")
 onready var tex_light_red = load("res://sprites/light _red.png")
@@ -41,13 +45,13 @@ func _process(delta) -> void:
 	_set_direction()
 
 func _set_direction() -> void:
-	if direction == Vector2(0,-1):
+	if direction == direction_up:
 		self.rotation = deg2rad(0)
-	elif direction == Vector2(1, 0):
+	elif direction == direction_right:
 		self.rotation = deg2rad(90)
-	elif direction == Vector2(0, 1):
+	elif direction == direction_down:
 		self.rotation = deg2rad(180)
-	elif direction == Vector2(-1, 0):
+	elif direction == direction_left:
 		self.rotation = deg2rad(-90)
 
 func _set_position() -> void :
@@ -74,14 +78,14 @@ func _drag_drop(event) -> void:
 
 func _change_direction(event) -> void:
 	if event.is_pressed() == false:
-		if direction == Vector2(0,-1):
-			direction = Vector2(1,0)
-		elif direction == Vector2(1, 0):
-			direction = Vector2(0,1)
-		elif direction == Vector2(0, 1):
-			direction = Vector2(-1,0)
+		if direction == direction_up:
+			direction = direction_right
+		elif direction == direction_right:
+			direction = direction_down
+		elif direction == direction_down:
+			direction = direction_left
 		else:
-			direction = Vector2(0,-1)
+			direction = direction_up
 
 func _set_coordinate() -> void:
 	var mouse_coordinate : Vector2 = Vector2.ZERO
@@ -101,11 +105,11 @@ func deplace_lights()->void:
 	for i in range(lights.size()):
 		lights[i].visible = false
 
-func place_lights(var light_direction : Vector2, var tex : Texture = tex_light_white)->void:
+func place_lights(var light_direction, var tex : Texture = tex_light_white)->void:
 	if being_dragged:
 		return
 		
-	if light_direction == Vector2(-1,-1):
+	if light_direction == null:
 		light_direction = direction
 		
 	for i in range(lights.size()):
@@ -116,7 +120,12 @@ func place_lights(var light_direction : Vector2, var tex : Texture = tex_light_w
 		if(interacted_with != null):
 			interacted_with.place_lights(light_direction, tex)
 			break
-			
+		
+		if light_direction == direction_left || light_direction == direction_right:
+			lights[i].rotation = deg2rad(90)
+		else:
+			lights[i].rotation = deg2rad(0)
+		
 		lights[i].texture = tex
 		lights[i].visible = true
 		lights[i].position = Vector2(

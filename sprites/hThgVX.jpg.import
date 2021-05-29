@@ -2,15 +2,15 @@
 
 importer="texture"
 type="StreamTexture"
-path="res://.import/mirror.png-a22c3f2b2cf7b42c61207dd111843d7e.stex"
+path="res://.import/hThgVX.jpg-aa8b39c7176cc5b63ec8114bc3085a46.stex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://sprites/mirror.png"
-dest_files=[ "res://.import/mirror.png-a22c3f2b2cf7b42c61207dd111843d7e.stex" ]
+source_file="res://sprites/hThgVX.jpg"
+dest_files=[ "res://.import/hThgVX.jpg-aa8b39c7176cc5b63ec8114bc3085a46.stex" ]
 
 [params]
 

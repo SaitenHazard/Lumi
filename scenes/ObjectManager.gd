@@ -30,7 +30,7 @@ func deplace_lights_all()->void:
 	
 func place_lights_guns() -> void:
 	for i in (guns.size()):
-		guns[i].place_lights(Vector2(-1,-1))
+		guns[i].place_lights(null)
 
 func deplace_lights_guns() -> void:
 	for i in (guns.size()):

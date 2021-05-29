@@ -2,15 +2,15 @@
 
 importer="texture"
 type="StreamTexture"
-path="res://.import/mirror.png-a22c3f2b2cf7b42c61207dd111843d7e.stex"
+path="res://.import/tile - Copy.png-dd042cae9b3445439f5f1643438994af.stex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://sprites/mirror.png"
-dest_files=[ "res://.import/mirror.png-a22c3f2b2cf7b42c61207dd111843d7e.stex" ]
+source_file="res://sprites/tile - Copy.png"
+dest_files=[ "res://.import/tile - Copy.png-dd042cae9b3445439f5f1643438994af.stex" ]
 
 [params]
 
