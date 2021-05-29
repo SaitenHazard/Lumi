@@ -7,8 +7,6 @@ func place_lights(var light_in_direction, var tex : Texture = null)->void:
 		.place_lights(reflected_light_direction, tex)
 
 func get_reflected_direction(light_direction):
-#	print(light_direction == direction_right)
-#	print(direction == direction_down)
 	if light_direction == direction_right:
 		if direction == direction_down:
 			return direction_down

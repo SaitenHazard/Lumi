@@ -10,6 +10,8 @@ class_name GameObject
 onready var tex_light_white = load("res://sprites/light.png")
 onready var tex_light_red = load("res://sprites/light _red.png")
 
+onready var IMMOVABLE = load("res://scenes/Immovable.tscn")
+
 onready var OBJECTMANAGER = get_node('/root/Game/ObjectManager')
 onready var TILES = get_node('/root/Game/Tiles')
 onready var LIGHT = get_node("Light")
@@ -19,6 +21,7 @@ onready var max_lights : float = TILES.get_mapsize().x
 export var coordinate : Vector2 = Vector2(5,5)
 export var direction : Vector2 = Vector2(0,-1)
 export var lights : Array
+export var immovable : bool = false
 
 var being_dragged : bool = false
 var _offset : float 
@@ -34,9 +37,18 @@ func get_direction() -> Vector2:
 	return direction
 
 func _ready() -> void:
-	tex_light_white.set_name('white')
-	tex_light_red.set_name('red')
+	_initialize()
 	_spawn_lights()
+	_set_immovable()
+
+func _set_immovable() -> void:
+	if immovable:
+		var immovable = IMMOVABLE.instance()
+		get_node('/root/Game/ObjectManager/Immovables').add_child(immovable)
+		immovable.position = Vector2(
+			_offset + coordinate.x * cell_size, _offset + coordinate.y * cell_size)
+
+func _initialize() -> void:
 	_offset = TILES.get_positon_offset()
 	cell_size = TILES.get_cell_size()
 
@@ -63,7 +75,7 @@ func _set_position() -> void :
 
 func _on_Area2D_input_event(viewport, event, shape_idx) -> void:
 	if event is InputEventMouseButton:
-		if event.button_index == BUTTON_LEFT:
+		if immovable == false && event.button_index == BUTTON_LEFT:
 			_drag_drop(event)
 			_set_coordinate()
 		elif event.button_index == BUTTON_RIGHT:
@@ -129,4 +141,5 @@ func place_lights(var light_direction, var tex : Texture = tex_light_white)->voi
 		lights[i].texture = tex
 		lights[i].visible = true
 		lights[i].position = Vector2(
-		self._offset + light_coordinate.x * self.cell_size, self._offset + light_coordinate.y * self.cell_size)
+		self._offset + light_coordinate.x * self.cell_size, self._offset + 
+		light_coordinate.y * self.cell_size)
