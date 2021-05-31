@@ -3,7 +3,7 @@
 [ext_resource path="res://goals/Goal.tscn" type="PackedScene" id=1]
 [ext_resource path="res://scenes/Sounds.tscn" type="PackedScene" id=2]
 [ext_resource path="res://levels/game.gd" type="Script" id=3]
-[ext_resource path="res://redirects/Redirects.tscn" type="PackedScene" id=7]
+[ext_resource path="res://combiners/Combiners.tscn" type="PackedScene" id=4]
 [ext_resource path="res://scenes/UI.tscn" type="PackedScene" id=8]
 [ext_resource path="res://sources/Source_blue.tscn" type="PackedScene" id=9]
 [ext_resource path="res://scenes/ObjectManager.gd" type="Script" id=12]
@@ -26,18 +26,29 @@ position = Vector2( 0, -1 )
 [node name="Sources" type="Node2D" parent="ObjectManager"]
 
 [node name="Source" parent="ObjectManager/Sources" instance=ExtResource( 9 )]
-coordinate = Vector2( 2, 1 )
-immovable = true
+coordinate = Vector2( 2, 2 )
+direction = Vector2( 1, 0 )
 
-[node name="Redirects" type="Node2D" parent="ObjectManager"]
+[node name="Source2" parent="ObjectManager/Sources" instance=ExtResource( 9 )]
+coordinate = Vector2( 4, 0 )
+direction = Vector2( 0, 1 )
+color = "red"
 
-[node name="Redirect" parent="ObjectManager/Redirects" instance=ExtResource( 7 )]
+[node name="Source3" parent="ObjectManager/Sources" instance=ExtResource( 9 )]
+coordinate = Vector2( 6, 2 )
+direction = Vector2( -1, 0 )
+color = "yellow"
 
 [node name="Goals" type="Node2D" parent="ObjectManager"]
 
 [node name="Goal" parent="ObjectManager/Goals" instance=ExtResource( 1 )]
-coordinate = Vector2( 8, 5 )
-direction = Vector2( -1, 0 )
-unrotatable = true
+coordinate = Vector2( 4, 5 )
+color = "purple"
+
+[node name="Combiners" type="Node2D" parent="ObjectManager"]
+
+[node name="Combiner" parent="ObjectManager/Combiners" instance=ExtResource( 4 )]
+coordinate = Vector2( 4, 2 )
+direction = Vector2( 1, 0 )
 
 [node name="Sounds" parent="." instance=ExtResource( 2 )]

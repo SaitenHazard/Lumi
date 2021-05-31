@@ -12,5 +12,7 @@ func place_lights(var light_in_direction, var light_color : String)->void:
 			CONTROL.enable()
 
 func deplace_lights()->void:
+	print("res://sprites/goals/goal_"+color+".png")
+	print(sprite_closed)
 	self.texture = sprite_closed
 	CONTROL.disable()

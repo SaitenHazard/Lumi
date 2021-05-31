@@ -21,7 +21,7 @@ _global_script_class_icons={
 [application]
 
 config/name="Lumi"
-run/main_scene="res://scenes/Game.tscn"
+run/main_scene="res://levels/level_1.tscn"
 config/icon="res://icon.png"
 
 [display]

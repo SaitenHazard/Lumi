@@ -16,7 +16,10 @@ const color_green : String = "green"
 
 onready var tex_light_blue = load("res://sprites/lights/light_blue.png")
 onready var tex_light_red = load("res://sprites/lights/light_red.png")
+onready var tex_light_yellow = load("res://sprites/lights/light_yellow.png")
 onready var tex_light_purple = load("res://sprites/lights/light_purple.png")
+onready var tex_light_green = load("res://sprites/lights/light_green.png")
+onready var tex_light_orange = load("res://sprites/lights/light_orange.png")
 
 onready var IMMOVABLE = load("res://scenes/Immovable.tscn")
 onready var UNROTATABLE = load("res://scenes/Unrotatable.tscn")
@@ -26,7 +29,8 @@ onready var SOUNDS = get_node('/root/Game/Sounds')
 onready var LIGHT = get_node("Light")
 onready var GAME = get_node('/root/Game/')
 
-onready var max_lights : float = GAME.get_mapsize().x
+onready var size : Vector2 = GAME.get_mapsize()
+onready var max_lights : float = size.x
 
 export var coordinate : Vector2 = Vector2(5,5)
 export var direction : Vector2 = Vector2(0,-1)
@@ -87,6 +91,16 @@ func _set_direction() -> void:
 
 func _set_position() -> void :
 	if being_dragged == false:
+		
+		if coordinate.x < 0:
+			coordinate.x = 0
+		if coordinate.y < 0:
+			coordinate.y = 0
+		if coordinate.x > size.x-1:
+			coordinate.x = size.x-1
+		if coordinate.y > size.y-1:
+			coordinate.y = size.y-1
+			
 		self.position = Vector2(
 		_offset + coordinate.x * cell_size, _offset + coordinate.y * cell_size)
 	else:
@@ -176,5 +190,11 @@ func _get_light_texture(color : String) -> Texture:
 		return tex_light_red
 	elif color == color_blue:
 		return tex_light_blue
+	elif color == color_yellow:
+		return tex_light_yellow
+	elif color == color_green:
+		return tex_light_green
+	elif color == color_orange:
+		return tex_light_orange
 	else:
 		return tex_light_purple
