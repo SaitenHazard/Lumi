@@ -1,0 +1,34 @@
+[gd_scene load_steps=7 format=2]
+
+[ext_resource path="res://scenes/Sounds.tscn" type="PackedScene" id=1]
+[ext_resource path="res://levels/game.gd" type="Script" id=2]
+[ext_resource path="res://scenes/UI.tscn" type="PackedScene" id=5]
+[ext_resource path="res://sources/Source_blue.tscn" type="PackedScene" id=6]
+[ext_resource path="res://goals/Goal.tscn" type="PackedScene" id=9]
+[ext_resource path="res://scenes/ObjectManager.gd" type="Script" id=13]
+
+[node name="Game" type="Node2D"]
+script = ExtResource( 2 )
+
+[node name="CanvasLayer" type="CanvasLayer" parent="."]
+
+[node name="UI" parent="CanvasLayer" instance=ExtResource( 5 )]
+scene_name = "level_2"
+
+[node name="ObjectManager" type="Node2D" parent="."]
+script = ExtResource( 13 )
+
+[node name="Details" type="Node2D" parent="ObjectManager"]
+
+[node name="Lights" type="Node2D" parent="ObjectManager"]
+
+[node name="Sources" type="Node2D" parent="ObjectManager"]
+
+[node name="Source" parent="ObjectManager/Sources" instance=ExtResource( 6 )]
+coordinate = Vector2( 2, 2 )
+
+[node name="Goals" type="Node2D" parent="ObjectManager"]
+
+[node name="Goal" parent="ObjectManager/Goals" instance=ExtResource( 9 )]
+
+[node name="Sounds" parent="." instance=ExtResource( 1 )]

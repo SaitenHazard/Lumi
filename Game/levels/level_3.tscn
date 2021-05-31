@@ -1,0 +1,52 @@
+[gd_scene load_steps=9 format=2]
+
+[ext_resource path="res://goals/Goal.tscn" type="PackedScene" id=1]
+[ext_resource path="res://scenes/Sounds.tscn" type="PackedScene" id=2]
+[ext_resource path="res://levels/game.gd" type="Script" id=3]
+[ext_resource path="res://filters/Filter.tscn" type="PackedScene" id=6]
+[ext_resource path="res://redirects/Redirects.tscn" type="PackedScene" id=7]
+[ext_resource path="res://scenes/UI.tscn" type="PackedScene" id=8]
+[ext_resource path="res://sources/Source_blue.tscn" type="PackedScene" id=9]
+[ext_resource path="res://scenes/ObjectManager.gd" type="Script" id=12]
+
+[node name="Game" type="Node2D"]
+script = ExtResource( 3 )
+
+[node name="CanvasLayer" type="CanvasLayer" parent="."]
+
+[node name="UI" parent="CanvasLayer" instance=ExtResource( 8 )]
+scene_name = "level_4"
+
+[node name="ObjectManager" type="Node2D" parent="."]
+script = ExtResource( 12 )
+
+[node name="Details" type="Node2D" parent="ObjectManager"]
+position = Vector2( 0, -1 )
+
+[node name="Lights" type="Node2D" parent="ObjectManager"]
+
+[node name="Sources" type="Node2D" parent="ObjectManager"]
+
+[node name="Source" parent="ObjectManager/Sources" instance=ExtResource( 9 )]
+coordinate = Vector2( 2, 1 )
+immovable = true
+
+[node name="Redirects" type="Node2D" parent="ObjectManager"]
+
+[node name="Redirect" parent="ObjectManager/Redirects" instance=ExtResource( 7 )]
+
+[node name="Filters" type="Node2D" parent="ObjectManager"]
+
+[node name="Filter" parent="ObjectManager/Filters" instance=ExtResource( 6 )]
+coordinate = Vector2( 4, 4 )
+color = "red"
+
+[node name="Goals" type="Node2D" parent="ObjectManager"]
+
+[node name="Goal" parent="ObjectManager/Goals" instance=ExtResource( 1 )]
+coordinate = Vector2( 8, 5 )
+direction = Vector2( 0, 1 )
+immovable = true
+color = "red"
+
+[node name="Sounds" parent="." instance=ExtResource( 2 )]
