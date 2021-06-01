@@ -1,6 +1,7 @@
 extends Node2D
 
 onready var TILES = get_node('/root/Game/Tiles')
+onready var CONTROL = get_node('/root/Game/CanvasLayer/UI')
 
 onready var redirects
 onready var sources
@@ -17,6 +18,20 @@ func _ready():
 	_initialize_goals()
 	_initialize_combiners()
 	replace_lights_all()
+	
+func _process(delta):
+	var b = _are_all_goals_open()
+	if b == false:
+		CONTROL.disable()
+	else:
+		CONTROL.enable()
+	
+func _are_all_goals_open() -> bool:
+	for i in range(goals.size()):
+		if goals[i].is_open() == false:
+			return false
+			
+	return true
 
 func _initialize_redirects() -> void:
 	redirects = get_node_or_null('Redirects')
@@ -93,7 +108,7 @@ func get_interaction_object(var coordinate : Vector2) -> Sprite:
 	object = _get_filter(coordinate)
 	if object!=null && object.get_being_dragged() == false:
 		return object 
-	object = _get_goals(coordinate)
+	object = get_goals(coordinate)
 	if object!=null && object.get_being_dragged() == false:
 		return object
 	object = _get_combiners(coordinate)
@@ -129,7 +144,7 @@ func _get_sources(var coordinate : Vector2):
 				return sources[i]
 	return null
 
-func _get_goals(var coordinate : Vector2):
+func get_goals(var coordinate : Vector2):
 	if goals != null:
 		for i in range(goals.size()):
 			if(goals[i].get_coordinate() == coordinate):
