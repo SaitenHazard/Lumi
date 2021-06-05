@@ -14,7 +14,7 @@ script = ExtResource( 6 )
 [node name="CanvasLayer" type="CanvasLayer" parent="."]
 
 [node name="UI" parent="CanvasLayer" instance=ExtResource( 4 )]
-scene_name = "level_7"
+scene_name = "level_9"
 
 [node name="ObjectManager" type="Node2D" parent="."]
 script = ExtResource( 7 )

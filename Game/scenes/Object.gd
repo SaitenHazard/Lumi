@@ -23,6 +23,7 @@ onready var tex_light_orange = load("res://sprites/lights/light_orange.png")
 
 onready var IMMOVABLE = load("res://scenes/Immovable.tscn")
 onready var UNROTATABLE = load("res://scenes/Unrotatable.tscn")
+onready var IMMOVABLE_AND_UNROTATABLE = load("res://scenes/Immovable_and_unrotatable.tscn")
 
 onready var OBJECTMANAGER = get_node('/root/Game/ObjectManager')
 onready var SOUNDS = get_node('/root/Game/Sounds')
@@ -58,6 +59,16 @@ func _ready() -> void:
 	_set_immovable()
 
 func _set_immovable() -> void:
+	if name == "Filter":
+		print('in')
+	if immovable && unrotatable:
+		var m_immovable_and_unrotatable = IMMOVABLE_AND_UNROTATABLE.instance()
+		get_node('/root/Game/ObjectManager/Details').add_child(m_immovable_and_unrotatable)
+		m_immovable_and_unrotatable.position = Vector2(
+			_offset + coordinate.x * cell_size, _offset + 
+			coordinate.y * cell_size)
+		return
+	
 	if immovable:
 		var m_immovable = IMMOVABLE.instance()
 		get_node('/root/Game/ObjectManager/Details').add_child(m_immovable)
@@ -107,6 +118,11 @@ func _set_position() -> void :
 		self.position =  get_viewport().get_mouse_position()
 
 func _on_Area2D_input_event(viewport, event, shape_idx) -> void:
+	var block = OBJECTMANAGER.get_block(coordinate)
+	
+	if block != null:
+		return
+		
 	if event is InputEventMouseButton:
 		if immovable == false && event.button_index == BUTTON_LEFT:
 			_drag_drop(event)
@@ -168,11 +184,17 @@ func place_lights(var light_direction, var color : String)->void:
 	for i in range(lights.size()):
 		var light_coordinate = Vector2(
 			coordinate.x + ((i+1)*light_direction.x), coordinate.y + ((i+1)*light_direction.y))
+	
+		if name == 'Redirect':
+			'in'
+			
 		var interacted_with  = OBJECTMANAGER.get_interaction_object(light_coordinate)
 		
-		if(interacted_with != null):
+		
+		if interacted_with != null:
 			interacted_with.place_lights(light_direction, color)
 			break
+			
 		
 		if light_direction == direction_left || light_direction == direction_right:
 			lights[i].rotation = deg2rad(90)

@@ -8,6 +8,7 @@ onready var sources
 onready var filters
 onready var goals
 onready var combiners 
+onready var blocks 
 
 var cell_selected : Texture
 
@@ -17,6 +18,7 @@ func _ready():
 	_initialize_filters()
 	_initialize_goals()
 	_initialize_combiners()
+	_initialize_blocks()
 	replace_lights_all()
 	
 func _process(delta):
@@ -37,6 +39,11 @@ func _initialize_redirects() -> void:
 	redirects = get_node_or_null('Redirects')
 	if redirects !=null:
 		redirects = redirects.get_children()
+		
+func _initialize_blocks() -> void:
+	blocks = get_node_or_null('Blocks')
+	if blocks !=null:
+		blocks = blocks.get_children()
 
 func _initialize_combiners() -> void:
 	combiners = get_node_or_null('Combiners')
@@ -99,31 +106,42 @@ func deplace_lights_goals() -> void:
 			goals[i].deplace_lights()
 
 func get_interaction_object(var coordinate : Vector2) -> Sprite:
-	var object = _get_redirects(coordinate)
+	var object = get_block(coordinate)
 	if object!=null && object.get_being_dragged() == false:
-		return object
-	object = _get_sources(coordinate)
+		return object 
+	object = _get_redirect(coordinate)
+	if object!=null && object.get_being_dragged() == false:
+		return object 
+	object = _get_source(coordinate)
 	if object!=null && object.get_being_dragged() == false:
 		return object
 	object = _get_filter(coordinate)
 	if object!=null && object.get_being_dragged() == false:
 		return object 
-	object = get_goals(coordinate)
+	object = get_goal(coordinate)
 	if object!=null && object.get_being_dragged() == false:
 		return object
-	object = _get_combiners(coordinate)
+	object = _get_combiner(coordinate)
 	if object!=null && object.get_being_dragged() == false:
-		return object 
+		return object
 	return null
-	
-func _get_redirects(var coordinate : Vector2):
+
+func get_block(var coordinate : Vector2):
+	if blocks != null:
+		for i in range(blocks.size()):
+			if blocks[i] != null:
+				if blocks[i].get_coordinate() == coordinate:
+					return blocks[i]
+	return null
+
+func _get_redirect(var coordinate : Vector2):
 	if redirects != null:
 		for i in range(redirects.size()):
 			if redirects[i].get_coordinate() == coordinate:
 				return redirects[i]
 	return null
 	
-func _get_combiners(var coordinate : Vector2):
+func _get_combiner(var coordinate : Vector2):
 	if combiners != null:
 		for i in range(combiners.size()):
 			if combiners[i].get_coordinate() == coordinate:
@@ -137,14 +155,14 @@ func _get_filter(var coordinate : Vector2):
 				return filters[i]
 	return null
 
-func _get_sources(var coordinate : Vector2):
+func _get_source(var coordinate : Vector2):
 	if sources != null:
 		for i in range(sources.size()):
 			if sources[i].get_coordinate() == coordinate:
 				return sources[i]
 	return null
 
-func get_goals(var coordinate : Vector2):
+func get_goal(var coordinate : Vector2):
 	if goals != null:
 		for i in range(goals.size()):
 			if(goals[i].get_coordinate() == coordinate):
