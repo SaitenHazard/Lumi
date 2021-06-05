@@ -6,6 +6,8 @@ onready var GAME = get_node('/root/Game/')
 onready var size : Vector2 = GAME.get_mapsize()
 onready var max_lights : float = size.x
 onready var play_coordinate : Vector2 = get_node('/root/Game/LevelManager/Play').get_coordinate()
+onready var path = "res://levels/"+str(select_level)+".tscn"
+onready var transition = get_node('/root/Game/SceneTransitionRect') 
 
 export var coordinate : Vector2 = Vector2(5,5)
 export var select_level : String = ''
@@ -69,3 +71,7 @@ func _set_coordinate() -> void:
 	mouse_coordinate.y = round((mouse_position.y - _offset) / cell_size)
 	if mouse_coordinate == play_coordinate:
 		coordinate = mouse_coordinate
+		_change_scene()
+		
+func _change_scene():
+	transition.transition_out(path)

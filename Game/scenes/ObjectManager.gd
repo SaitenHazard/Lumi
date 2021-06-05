@@ -2,6 +2,7 @@ extends Node2D
 
 onready var TILES = get_node('/root/Game/Tiles')
 onready var CONTROL = get_node('/root/Game/CanvasLayer/UI')
+onready var TRANSITION = get_node('/root/Game/SceneTransitionRect')
 
 onready var redirects
 onready var sources
@@ -11,6 +12,9 @@ onready var combiners
 onready var blocks 
 
 var cell_selected : Texture
+export var next_level : String
+
+onready var path = "res://levels/"+str(next_level)+".tscn"
 
 func _ready():
 	_initialize_redirects()
@@ -22,11 +26,8 @@ func _ready():
 	replace_lights_all()
 	
 func _process(delta):
-	var b = _are_all_goals_open()
-	if b == false:
-		CONTROL.disable()
-	else:
-		CONTROL.enable()
+	if _are_all_goals_open():
+		TRANSITION.transition_out(path)
 	
 func _are_all_goals_open() -> bool:
 	for i in range(goals.size()):

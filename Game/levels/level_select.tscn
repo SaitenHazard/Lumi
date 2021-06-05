@@ -1,4 +1,4 @@
-[gd_scene load_steps=7 format=2]
+[gd_scene load_steps=9 format=2]
 
 [ext_resource path="res://scenes/Sounds.tscn" type="PackedScene" id=1]
 [ext_resource path="res://levels/game.gd" type="Script" id=2]
@@ -6,9 +6,15 @@
 [ext_resource path="res://new_dynamicfont.tres" type="DynamicFont" id=4]
 [ext_resource path="res://level_select/Level_select_1.tscn" type="PackedScene" id=5]
 [ext_resource path="res://level_select/Play.gd" type="Script" id=6]
+[ext_resource path="res://sprites/back.png" type="Texture" id=7]
+[ext_resource path="res://SceneTransitionRect.tscn" type="PackedScene" id=8]
 
 [node name="Game" type="Node2D"]
 script = ExtResource( 2 )
+
+[node name="Back" type="Sprite" parent="."]
+position = Vector2( 529.485, 291.485 )
+texture = ExtResource( 7 )
 
 [node name="Sounds" parent="." instance=ExtResource( 1 )]
 
@@ -98,3 +104,90 @@ valign = 1
 __meta__ = {
 "_edit_use_anchors_": false
 }
+
+[node name="LevelSelect5" parent="LevelManager" instance=ExtResource( 5 )]
+coordinate = Vector2( 5, 3 )
+select_level = "level_1"
+
+[node name="Label2" type="Label" parent="LevelManager/LevelSelect5"]
+margin_left = -40.0
+margin_top = -40.0
+margin_right = 40.0
+margin_bottom = 40.0
+custom_fonts/font = ExtResource( 4 )
+text = "5"
+align = 1
+valign = 1
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="LevelSelect6" parent="LevelManager" instance=ExtResource( 5 )]
+coordinate = Vector2( 6, 3 )
+select_level = "level_1"
+
+[node name="Label2" type="Label" parent="LevelManager/LevelSelect6"]
+margin_left = -40.0
+margin_top = -40.0
+margin_right = 40.0
+margin_bottom = 40.0
+custom_fonts/font = ExtResource( 4 )
+text = "6"
+align = 1
+valign = 1
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="LevelSelect7" parent="LevelManager" instance=ExtResource( 5 )]
+coordinate = Vector2( 7, 3 )
+select_level = "level_1"
+
+[node name="Label2" type="Label" parent="LevelManager/LevelSelect7"]
+margin_left = -40.0
+margin_top = -40.0
+margin_right = 40.0
+margin_bottom = 40.0
+custom_fonts/font = ExtResource( 4 )
+text = "7"
+align = 1
+valign = 1
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="LevelSelect8" parent="LevelManager" instance=ExtResource( 5 )]
+coordinate = Vector2( 8, 3 )
+select_level = "level_1"
+
+[node name="Label2" type="Label" parent="LevelManager/LevelSelect8"]
+margin_left = -40.0
+margin_top = -40.0
+margin_right = 40.0
+margin_bottom = 40.0
+custom_fonts/font = ExtResource( 4 )
+text = "8"
+align = 1
+valign = 1
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="LevelSelect9" parent="LevelManager" instance=ExtResource( 5 )]
+coordinate = Vector2( 9, 3 )
+select_level = "level_1"
+
+[node name="Label2" type="Label" parent="LevelManager/LevelSelect9"]
+margin_left = -40.0
+margin_top = -40.0
+margin_right = 40.0
+margin_bottom = 40.0
+custom_fonts/font = ExtResource( 4 )
+text = "9"
+align = 1
+valign = 1
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="SceneTransitionRect" parent="." instance=ExtResource( 8 )]
