@@ -18,7 +18,6 @@ tracks/0/keys = {
 }
 
 [node name="SceneTransitionRect" type="ColorRect"]
-modulate = Color( 1, 1, 1, 0 )
 margin_right = 1056.0
 margin_bottom = 576.0
 mouse_filter = 2
