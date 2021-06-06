@@ -1,9 +1,10 @@
-[gd_scene load_steps=8 format=2]
+[gd_scene load_steps=9 format=2]
 
 [ext_resource path="res://goals/Goal.tscn" type="PackedScene" id=1]
 [ext_resource path="res://levels/game.gd" type="Script" id=2]
 [ext_resource path="res://scenes/Sounds.tscn" type="PackedScene" id=3]
 [ext_resource path="res://Back.tscn" type="PackedScene" id=4]
+[ext_resource path="res://Camera2D.tscn" type="PackedScene" id=5]
 [ext_resource path="res://SceneTransitionRect.tscn" type="PackedScene" id=6]
 [ext_resource path="res://sources/Source_blue.tscn" type="PackedScene" id=7]
 [ext_resource path="res://scenes/ObjectManager.gd" type="Script" id=13]
@@ -47,3 +48,5 @@ color = "red"
 [node name="Sounds" parent="." instance=ExtResource( 3 )]
 
 [node name="SceneTransitionRect" parent="." instance=ExtResource( 6 )]
+
+[node name="Camera2D" parent="." instance=ExtResource( 5 )]

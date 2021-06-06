@@ -1,8 +1,9 @@
-[gd_scene load_steps=9 format=2]
+[gd_scene load_steps=10 format=2]
 
 [ext_resource path="res://goals/Goal.tscn" type="PackedScene" id=1]
 [ext_resource path="res://sources/Source_blue.tscn" type="PackedScene" id=2]
 [ext_resource path="res://combiners/Combiners.tscn" type="PackedScene" id=3]
+[ext_resource path="res://Camera2D.tscn" type="PackedScene" id=4]
 [ext_resource path="res://scenes/Sounds.tscn" type="PackedScene" id=5]
 [ext_resource path="res://levels/game.gd" type="Script" id=6]
 [ext_resource path="res://scenes/ObjectManager.gd" type="Script" id=7]
@@ -54,3 +55,6 @@ direction = Vector2( 1, 0 )
 [node name="Sounds" parent="." instance=ExtResource( 5 )]
 
 [node name="SceneTransitionRect" parent="." instance=ExtResource( 9 )]
+
+[node name="Camera2D" parent="." instance=ExtResource( 4 )]
+current = true

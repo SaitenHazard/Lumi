@@ -1,4 +1,4 @@
-[gd_scene load_steps=11 format=2]
+[gd_scene load_steps=12 format=2]
 
 [ext_resource path="res://goals/Goal.tscn" type="PackedScene" id=1]
 [ext_resource path="res://scenes/Sounds.tscn" type="PackedScene" id=2]
@@ -7,6 +7,7 @@
 [ext_resource path="res://scenes/Block.tscn" type="PackedScene" id=5]
 [ext_resource path="res://filters/Filter.tscn" type="PackedScene" id=6]
 [ext_resource path="res://redirects/Redirects.tscn" type="PackedScene" id=7]
+[ext_resource path="res://Camera2D.tscn" type="PackedScene" id=8]
 [ext_resource path="res://sources/Source_blue.tscn" type="PackedScene" id=9]
 [ext_resource path="res://SceneTransitionRect.tscn" type="PackedScene" id=10]
 [ext_resource path="res://scenes/ObjectManager.gd" type="Script" id=12]
@@ -65,3 +66,6 @@ color = "red"
 [node name="Sounds" parent="." instance=ExtResource( 2 )]
 
 [node name="SceneTransitionRect" parent="." instance=ExtResource( 10 )]
+
+[node name="Camera2D" parent="." instance=ExtResource( 8 )]
+current = true

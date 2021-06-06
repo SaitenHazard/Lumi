@@ -24,6 +24,7 @@ onready var tex_light_orange = load("res://sprites/lights/light_orange.png")
 onready var IMMOVABLE = load("res://scenes/Immovable.tscn")
 onready var UNROTATABLE = load("res://scenes/Unrotatable.tscn")
 onready var IMMOVABLE_AND_UNROTATABLE = load("res://scenes/Immovable_and_unrotatable.tscn")
+onready var CAMERA_SHAKE = get_node("/root/Game/Camera2D")
 
 onready var OBJECTMANAGER = get_node('/root/Game/ObjectManager')
 onready var SOUNDS = get_node('/root/Game/Sounds')
@@ -54,6 +55,7 @@ func get_direction() -> Vector2:
 	return direction
 
 func _ready() -> void:
+	print(CAMERA_SHAKE)
 	_initialize()
 	_spawn_lights()
 	_set_immovable()
@@ -124,24 +126,42 @@ func _on_Area2D_input_event(viewport, event, shape_idx) -> void:
 		return
 		
 	if event is InputEventMouseButton:
-		if immovable == false && event.button_index == BUTTON_LEFT:
-			_drag_drop(event)
-			_set_coordinate()
+		if event.button_index == BUTTON_LEFT:
+			if immovable == false:
+				_drag_drop(event)
+				_set_coordinate()
+			else:
+				_now_allowed()
 		elif event.button_index == BUTTON_RIGHT:
 			if unrotatable == false:
 				_change_direction(event)
+			else:
+				_now_allowed()
 		OBJECTMANAGER.replace_lights_all()
+
+func _now_allowed():
+	SOUNDS.get_node('Wrong').play()
+	CAMERA_SHAKE.shake(0.2,15,8)
+
+func _rotate_ani_expand():
+	var time_ani = 0.25
+	self.set_scale(Vector2(1.2,1.2))
+	yield(get_tree().create_timer(time_ani), "timeout")
+	self.set_scale(Vector2(1,1))
 
 func _drag_drop(event) -> void:
 	if event.is_pressed():
 		being_dragged = true
 		SOUNDS.get_node('PickUp').play()
+		self.set_scale(Vector2(1.1,1.1))
 	else:
 		SOUNDS.get_node('Drop').play()
+		self.set_scale(Vector2(1,1))
 		being_dragged = false
 
 func _change_direction(event) -> void:
-	if event.is_pressed() == false:
+	if event.is_pressed() == true:
+		_rotate_ani_expand()
 		SOUNDS.get_node('Rotate').play()
 		if direction == direction_up:
 			direction = direction_right
@@ -184,17 +204,11 @@ func place_lights(var light_direction, var color : String)->void:
 	for i in range(lights.size()):
 		var light_coordinate = Vector2(
 			coordinate.x + ((i+1)*light_direction.x), coordinate.y + ((i+1)*light_direction.y))
-	
-		if name == 'Redirect':
-			'in'
-			
 		var interacted_with  = OBJECTMANAGER.get_interaction_object(light_coordinate)
-		
 		
 		if interacted_with != null:
 			interacted_with.place_lights(light_direction, color)
 			break
-			
 		
 		if light_direction == direction_left || light_direction == direction_right:
 			lights[i].rotation = deg2rad(90)

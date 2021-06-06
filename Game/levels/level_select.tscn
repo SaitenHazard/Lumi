@@ -1,4 +1,4 @@
-[gd_scene load_steps=9 format=2]
+[gd_scene load_steps=10 format=2]
 
 [ext_resource path="res://scenes/Sounds.tscn" type="PackedScene" id=1]
 [ext_resource path="res://levels/game.gd" type="Script" id=2]
@@ -8,6 +8,7 @@
 [ext_resource path="res://level_select/Play.gd" type="Script" id=6]
 [ext_resource path="res://sprites/back.png" type="Texture" id=7]
 [ext_resource path="res://SceneTransitionRect.tscn" type="PackedScene" id=8]
+[ext_resource path="res://camera_shake.gd" type="Script" id=9]
 
 [node name="Game" type="Node2D"]
 script = ExtResource( 2 )
@@ -191,3 +192,7 @@ __meta__ = {
 }
 
 [node name="SceneTransitionRect" parent="." instance=ExtResource( 8 )]
+
+[node name="Camera2D" type="Camera2D" parent="."]
+current = true
+script = ExtResource( 9 )

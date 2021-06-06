@@ -6,6 +6,7 @@ var offset : float = cell_size / 2
 
 onready var back = get_node('/root/Game/Back')
 onready var transition = get_node('/root/Game/SceneTransitionRect') 
+onready var camera = get_node('/root/Game/Camera2D') 
 
 const back_colors : Array = [
 	"8f5765",
@@ -27,6 +28,9 @@ func _set_back():
 	var color = back_colors[rand]
 	back.set_self_modulate(color)
 	back.set_z_index(-3000)
+	back.set_position(Vector2(528, 288))
+	camera.set_position(Vector2(528, 288))
+	camera.current = true
 	transition.transition_in(color)
 
 func get_mapsize() -> Vector2:
