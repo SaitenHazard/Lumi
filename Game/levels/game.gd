@@ -10,22 +10,52 @@ onready var camera = get_node('/root/Game/Camera2D')
 
 const back_colors : Array = [
 	"8f5765",
-	"d46453",
+	"9c3247",
 	"f5a15d",
 	"ff9757",
 	"5b537d",
 	"928fb8",
 	"cf968c",
 	]
+	
+const active_colors : Array = [
+	"cf968c",
+	"d46453",
+	"d46453",
+	"d46453",
+	"928fb8",
+	"5b537d",
+	"f0c297",
+	]
+	
+const inactive_colors : Array = [
+	"52294b",
+	"691749",
+	"9c3247",
+	"9c3247",
+	"392946",
+	"392946",
+	"8f5765",
+	]
+
+var color_index : int;
 
 func _ready():
-	_set_back()
-
-func _set_back():
 	var rng = RandomNumberGenerator.new()
 	rng.randomize()
-	var rand = rng.randi_range(0, back_colors.size()-1)
-	var color = back_colors[rand]
+	color_index = rng.randi_range(0, back_colors.size()-1)
+	color_index = 6
+	_set_back()
+	
+func get_active_color() -> Color:
+	return active_colors[color_index]
+	
+func get_inactive_color() -> Color:
+	return inactive_colors[color_index]
+
+func _set_back():
+	var color = back_colors[color_index]
+	color = back_colors[color_index]
 	back.set_self_modulate(color)
 	back.set_z_index(-3000)
 	back.set_position(Vector2(528, 288))

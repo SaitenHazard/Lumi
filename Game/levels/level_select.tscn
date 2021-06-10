@@ -1,4 +1,4 @@
-[gd_scene load_steps=10 format=2]
+[gd_scene load_steps=14 format=2]
 
 [ext_resource path="res://scenes/Sounds.tscn" type="PackedScene" id=1]
 [ext_resource path="res://levels/game.gd" type="Script" id=2]
@@ -9,6 +9,10 @@
 [ext_resource path="res://sprites/back.png" type="Texture" id=7]
 [ext_resource path="res://SceneTransitionRect.tscn" type="PackedScene" id=8]
 [ext_resource path="res://camera_shake.gd" type="Script" id=9]
+[ext_resource path="res://levels/LevelManager.gd" type="Script" id=10]
+[ext_resource path="res://sprites/title.png" type="Texture" id=11]
+[ext_resource path="res://levels/splash.tscn" type="PackedScene" id=12]
+[ext_resource path="res://sprites/level_select/button.png" type="Texture" id=13]
 
 [node name="Game" type="Node2D"]
 script = ExtResource( 2 )
@@ -19,13 +23,12 @@ texture = ExtResource( 7 )
 
 [node name="Sounds" parent="." instance=ExtResource( 1 )]
 
-[node name="LevelManager" type="Node2D" parent="."]
-
-[node name="Play" parent="LevelManager" instance=ExtResource( 3 )]
+[node name="Play" parent="." instance=ExtResource( 3 )]
+texture = ExtResource( 13 )
 script = ExtResource( 6 )
-coordinate = Vector2( 5, 1 )
+coordinate = Vector2( 5, 2 )
 
-[node name="Label" type="Label" parent="LevelManager/Play"]
+[node name="Label" type="Label" parent="Play"]
 margin_left = -40.0
 margin_top = -40.0
 margin_right = 40.0
@@ -38,9 +41,12 @@ __meta__ = {
 "_edit_use_anchors_": false
 }
 
+[node name="LevelManager" type="Node2D" parent="."]
+script = ExtResource( 10 )
+
 [node name="LevelSelect1" parent="LevelManager" instance=ExtResource( 5 )]
 coordinate = Vector2( 1, 3 )
-select_level = "level_1"
+select_level = "1"
 
 [node name="Label2" type="Label" parent="LevelManager/LevelSelect1"]
 margin_left = -40.0
@@ -57,7 +63,7 @@ __meta__ = {
 
 [node name="LevelSelect2" parent="LevelManager" instance=ExtResource( 5 )]
 coordinate = Vector2( 2, 3 )
-select_level = "level_1"
+select_level = "2"
 
 [node name="Label2" type="Label" parent="LevelManager/LevelSelect2"]
 margin_left = -40.0
@@ -74,7 +80,7 @@ __meta__ = {
 
 [node name="LevelSelect3" parent="LevelManager" instance=ExtResource( 5 )]
 coordinate = Vector2( 3, 3 )
-select_level = "level_1"
+select_level = "3"
 
 [node name="Label2" type="Label" parent="LevelManager/LevelSelect3"]
 margin_left = -40.0
@@ -91,7 +97,7 @@ __meta__ = {
 
 [node name="LevelSelect4" parent="LevelManager" instance=ExtResource( 5 )]
 coordinate = Vector2( 4, 3 )
-select_level = "level_1"
+select_level = "4"
 
 [node name="Label2" type="Label" parent="LevelManager/LevelSelect4"]
 margin_left = -40.0
@@ -108,7 +114,7 @@ __meta__ = {
 
 [node name="LevelSelect5" parent="LevelManager" instance=ExtResource( 5 )]
 coordinate = Vector2( 5, 3 )
-select_level = "level_1"
+select_level = "5"
 
 [node name="Label2" type="Label" parent="LevelManager/LevelSelect5"]
 margin_left = -40.0
@@ -125,7 +131,7 @@ __meta__ = {
 
 [node name="LevelSelect6" parent="LevelManager" instance=ExtResource( 5 )]
 coordinate = Vector2( 6, 3 )
-select_level = "level_1"
+select_level = "6"
 
 [node name="Label2" type="Label" parent="LevelManager/LevelSelect6"]
 margin_left = -40.0
@@ -142,7 +148,7 @@ __meta__ = {
 
 [node name="LevelSelect7" parent="LevelManager" instance=ExtResource( 5 )]
 coordinate = Vector2( 7, 3 )
-select_level = "level_1"
+select_level = "7"
 
 [node name="Label2" type="Label" parent="LevelManager/LevelSelect7"]
 margin_left = -40.0
@@ -159,7 +165,7 @@ __meta__ = {
 
 [node name="LevelSelect8" parent="LevelManager" instance=ExtResource( 5 )]
 coordinate = Vector2( 8, 3 )
-select_level = "level_1"
+select_level = "8"
 
 [node name="Label2" type="Label" parent="LevelManager/LevelSelect8"]
 margin_left = -40.0
@@ -176,7 +182,7 @@ __meta__ = {
 
 [node name="LevelSelect9" parent="LevelManager" instance=ExtResource( 5 )]
 coordinate = Vector2( 9, 3 )
-select_level = "level_1"
+select_level = "9"
 
 [node name="Label2" type="Label" parent="LevelManager/LevelSelect9"]
 margin_left = -40.0
@@ -191,8 +197,15 @@ __meta__ = {
 "_edit_use_anchors_": false
 }
 
+[node name="Title" type="Sprite" parent="."]
+position = Vector2( 528.976, -35.3454 )
+texture = ExtResource( 11 )
+
 [node name="SceneTransitionRect" parent="." instance=ExtResource( 8 )]
 
 [node name="Camera2D" type="Camera2D" parent="."]
 current = true
 script = ExtResource( 9 )
+
+[node name="splash" parent="." instance=ExtResource( 12 )]
+position = Vector2( 531, 288 )

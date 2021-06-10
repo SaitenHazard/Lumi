@@ -14,7 +14,10 @@ onready var blocks
 var cell_selected : Texture
 export var next_level : String
 
-onready var path = "res://levels/"+str(next_level)+".tscn"
+onready var path = "res://levels/level_"+str(next_level)+".tscn"
+
+var SAVE_DIR = "user://saves/"
+var save_path = SAVE_DIR + "save.dat"
 
 func _ready():
 	_initialize_redirects()
@@ -27,8 +30,38 @@ func _ready():
 	
 func _process(delta):
 	if _are_all_goals_open():
+		_save()
 		TRANSITION.transition_out(path)
+		
+func _save() -> void:
+	var last_unlock = _check_last_unlock()
 	
+	if last_unlock >= next_level:
+		return
+	
+	var data = {
+		"level" : next_level
+	}
+	
+	var dir = Directory.new()
+	if !dir.dir_exists(SAVE_DIR):
+		dir.make_dir_recursive(SAVE_DIR)
+	
+	var file = File.new()
+	var error = file.open_encrypted_with_pass(save_path, File.WRITE, "PASS")
+	if error == OK:
+		file.store_var(data)
+		file.close()
+		
+func _check_last_unlock() -> int:
+	var file = File.new()
+	if file.file_exists(save_path):
+		var error = file.open_encrypted_with_pass(save_path, File.READ, "PASS")
+		if error == OK:
+			var player_data = file.get_var()
+			return player_data['level']
+	return 1
+
 func _are_all_goals_open() -> bool:
 	for i in range(goals.size()):
 		if goals[i].is_open() == false:

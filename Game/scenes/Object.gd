@@ -55,14 +55,11 @@ func get_direction() -> Vector2:
 	return direction
 
 func _ready() -> void:
-	print(CAMERA_SHAKE)
 	_initialize()
 	_spawn_lights()
 	_set_immovable()
 
 func _set_immovable() -> void:
-	if name == "Filter":
-		print('in')
 	if immovable && unrotatable:
 		var m_immovable_and_unrotatable = IMMOVABLE_AND_UNROTATABLE.instance()
 		get_node('/root/Game/ObjectManager/Details').add_child(m_immovable_and_unrotatable)
