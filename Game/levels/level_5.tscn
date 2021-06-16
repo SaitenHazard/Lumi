@@ -5,8 +5,8 @@
 [ext_resource path="res://levels/game.gd" type="Script" id=3]
 [ext_resource path="res://Back.tscn" type="PackedScene" id=4]
 [ext_resource path="res://SceneTransitionRect.tscn" type="PackedScene" id=5]
-[ext_resource path="res://Camera2D.tscn" type="PackedScene" id=6]
 [ext_resource path="res://redirects/Redirects.tscn" type="PackedScene" id=7]
+[ext_resource path="res://Camera2D.tscn" type="PackedScene" id=8]
 [ext_resource path="res://sources/Source_blue.tscn" type="PackedScene" id=9]
 [ext_resource path="res://scenes/ObjectManager.gd" type="Script" id=12]
 
@@ -17,7 +17,7 @@ script = ExtResource( 3 )
 
 [node name="ObjectManager" type="Node2D" parent="."]
 script = ExtResource( 12 )
-next_level = "6"
+next_level = "5"
 
 [node name="Details" type="Node2D" parent="ObjectManager"]
 position = Vector2( 0, -1 )
@@ -27,24 +27,26 @@ position = Vector2( 0, -1 )
 [node name="Sources" type="Node2D" parent="ObjectManager"]
 
 [node name="Source" parent="ObjectManager/Sources" instance=ExtResource( 9 )]
+coordinate = Vector2( 2, 1 )
+direction = Vector2( -1, 0 )
 immovable = true
+color = "yellow"
 
 [node name="Redirects" type="Node2D" parent="ObjectManager"]
 
 [node name="Redirect" parent="ObjectManager/Redirects" instance=ExtResource( 7 )]
-coordinate = Vector2( 3, 3 )
-direction = Vector2( -1, 0 )
 unrotatable = true
 
 [node name="Goals" type="Node2D" parent="ObjectManager"]
 
 [node name="Goal" parent="ObjectManager/Goals" instance=ExtResource( 1 )]
-coordinate = Vector2( 5, 1 )
-direction = Vector2( -1, 0 )
-unrotatable = true
+coordinate = Vector2( 8, 3 )
+direction = Vector2( 0, 1 )
+immovable = true
+color = "yellow"
 
 [node name="Sounds" parent="." instance=ExtResource( 2 )]
 
 [node name="SceneTransitionRect" parent="." instance=ExtResource( 5 )]
 
-[node name="Camera2D" parent="." instance=ExtResource( 6 )]
+[node name="Camera2D" parent="." instance=ExtResource( 8 )]

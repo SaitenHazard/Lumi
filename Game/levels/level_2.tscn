@@ -1,4 +1,4 @@
-[gd_scene load_steps=10 format=2]
+[gd_scene load_steps=9 format=2]
 
 [ext_resource path="res://goals/Goal.tscn" type="PackedScene" id=1]
 [ext_resource path="res://levels/game.gd" type="Script" id=2]
@@ -7,7 +7,6 @@
 [ext_resource path="res://camera_shake.gd" type="Script" id=5]
 [ext_resource path="res://Back.tscn" type="PackedScene" id=6]
 [ext_resource path="res://sources/Source_blue.tscn" type="PackedScene" id=7]
-[ext_resource path="res://filters/Filter.tscn" type="PackedScene" id=9]
 [ext_resource path="res://scenes/ObjectManager.gd" type="Script" id=13]
 
 [node name="Game" type="Node2D"]
@@ -29,18 +28,21 @@ next_level = "3"
 [node name="Source" parent="ObjectManager/Sources" instance=ExtResource( 7 )]
 coordinate = Vector2( 2, 2 )
 direction = Vector2( 0, 1 )
-immovable = true
 
-[node name="Filters" type="Node2D" parent="ObjectManager"]
-
-[node name="Filter" parent="ObjectManager/Filters" instance=ExtResource( 9 )]
-coordinate = Vector2( 2, 4 )
+[node name="Source2" parent="ObjectManager/Sources" instance=ExtResource( 7 )]
+position = Vector2( 0, -1 )
+coordinate = Vector2( 5, 2 )
+direction = Vector2( 0, 1 )
 color = "red"
 
 [node name="Goals" type="Node2D" parent="ObjectManager"]
 
 [node name="Goal" parent="ObjectManager/Goals" instance=ExtResource( 1 )]
+coordinate = Vector2( 3, 3 )
 color = "red"
+
+[node name="Goal2" parent="ObjectManager/Goals" instance=ExtResource( 1 )]
+coordinate = Vector2( 3, 5 )
 
 [node name="Sounds" parent="." instance=ExtResource( 3 )]
 

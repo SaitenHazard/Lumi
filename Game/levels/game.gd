@@ -44,7 +44,6 @@ func _ready():
 	var rng = RandomNumberGenerator.new()
 	rng.randomize()
 	color_index = rng.randi_range(0, back_colors.size()-1)
-	color_index = 6
 	_set_back()
 	
 func get_active_color() -> Color:

@@ -36,7 +36,7 @@ func _process(delta):
 func _save() -> void:
 	var last_unlock = _check_last_unlock()
 	
-	if last_unlock >= next_level:
+	if int(last_unlock) >= int(next_level):
 		return
 	
 	var data = {
@@ -63,6 +63,9 @@ func _check_last_unlock() -> int:
 	return 1
 
 func _are_all_goals_open() -> bool:
+	if goals == null:
+		return false
+		
 	for i in range(goals.size()):
 		if goals[i].is_open() == false:
 			return false

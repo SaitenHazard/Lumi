@@ -197,6 +197,159 @@ __meta__ = {
 "_edit_use_anchors_": false
 }
 
+[node name="LevelSelect10" parent="LevelManager" instance=ExtResource( 5 )]
+coordinate = Vector2( 1, 4 )
+select_level = "10"
+
+[node name="Label2" type="Label" parent="LevelManager/LevelSelect10"]
+margin_left = -40.0
+margin_top = -40.0
+margin_right = 40.0
+margin_bottom = 40.0
+custom_fonts/font = ExtResource( 4 )
+text = "10"
+align = 1
+valign = 1
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="LevelSelect11" parent="LevelManager" instance=ExtResource( 5 )]
+coordinate = Vector2( 2, 4 )
+select_level = "11"
+
+[node name="Label2" type="Label" parent="LevelManager/LevelSelect11"]
+margin_left = -40.0
+margin_top = -40.0
+margin_right = 40.0
+margin_bottom = 40.0
+custom_fonts/font = ExtResource( 4 )
+text = "11"
+align = 1
+valign = 1
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="LevelSelect12" parent="LevelManager" instance=ExtResource( 5 )]
+coordinate = Vector2( 3, 4 )
+select_level = "12"
+
+[node name="Label2" type="Label" parent="LevelManager/LevelSelect12"]
+margin_left = -40.0
+margin_top = -40.0
+margin_right = 40.0
+margin_bottom = 40.0
+custom_fonts/font = ExtResource( 4 )
+text = "12"
+align = 1
+valign = 1
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="LevelSelect13" parent="LevelManager" instance=ExtResource( 5 )]
+coordinate = Vector2( 4, 4 )
+select_level = "13"
+
+[node name="Label2" type="Label" parent="LevelManager/LevelSelect13"]
+margin_left = -40.0
+margin_top = -40.0
+margin_right = 40.0
+margin_bottom = 40.0
+custom_fonts/font = ExtResource( 4 )
+text = "13"
+align = 1
+valign = 1
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="LevelSelect14" parent="LevelManager" instance=ExtResource( 5 )]
+coordinate = Vector2( 5, 4 )
+select_level = "14"
+
+[node name="Label2" type="Label" parent="LevelManager/LevelSelect14"]
+margin_left = -40.0
+margin_top = -40.0
+margin_right = 40.0
+margin_bottom = 40.0
+custom_fonts/font = ExtResource( 4 )
+text = "14"
+align = 1
+valign = 1
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="LevelSelect15" parent="LevelManager" instance=ExtResource( 5 )]
+coordinate = Vector2( 6, 4 )
+select_level = "15"
+
+[node name="Label2" type="Label" parent="LevelManager/LevelSelect15"]
+margin_left = -40.0
+margin_top = -40.0
+margin_right = 40.0
+margin_bottom = 40.0
+custom_fonts/font = ExtResource( 4 )
+text = "15"
+align = 1
+valign = 1
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="LevelSelect16" parent="LevelManager" instance=ExtResource( 5 )]
+coordinate = Vector2( 7, 4 )
+select_level = "16"
+
+[node name="Label2" type="Label" parent="LevelManager/LevelSelect16"]
+margin_left = -40.0
+margin_top = -40.0
+margin_right = 40.0
+margin_bottom = 40.0
+custom_fonts/font = ExtResource( 4 )
+text = "16"
+align = 1
+valign = 1
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="LevelSelect17" parent="LevelManager" instance=ExtResource( 5 )]
+coordinate = Vector2( 8, 4 )
+select_level = "17"
+
+[node name="Label2" type="Label" parent="LevelManager/LevelSelect17"]
+margin_left = -40.0
+margin_top = -40.0
+margin_right = 40.0
+margin_bottom = 40.0
+custom_fonts/font = ExtResource( 4 )
+text = "17"
+align = 1
+valign = 1
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="LevelSelect18" parent="LevelManager" instance=ExtResource( 5 )]
+coordinate = Vector2( 9, 4 )
+select_level = "18"
+
+[node name="Label2" type="Label" parent="LevelManager/LevelSelect18"]
+margin_left = -40.0
+margin_top = -40.0
+margin_right = 40.0
+margin_bottom = 40.0
+custom_fonts/font = ExtResource( 4 )
+text = "18"
+align = 1
+valign = 1
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
 [node name="Title" type="Sprite" parent="."]
 position = Vector2( 528.976, -35.3454 )
 texture = ExtResource( 11 )
@@ -208,4 +361,4 @@ current = true
 script = ExtResource( 9 )
 
 [node name="splash" parent="." instance=ExtResource( 12 )]
-position = Vector2( 531, 288 )
+position = Vector2( 528, 288 )

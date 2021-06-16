@@ -182,6 +182,8 @@ func _set_coordinate() -> void:
 	
 func _spawn_lights()->void:
 	var root_game = get_node('/root/Game/ObjectManager/Lights')
+	if root_game == null:
+		return
 	for i in range(max_lights):
 		var light =  LIGHT.duplicate()
 		lights.push_back(light)

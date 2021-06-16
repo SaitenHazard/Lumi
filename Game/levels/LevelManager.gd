@@ -19,7 +19,8 @@ func _unlock_levels():
 		var error = file.open_encrypted_with_pass(save_path, File.READ, "PASS")
 		if error == OK:
 			var player_data = file.get_var()
-			_lock_level(int(player_data['level']))
+#			_lock_level(int(player_data['level']))
+			_lock_level(18)
 			return
 	_lock_level(2)
 
