@@ -10,6 +10,7 @@ onready var filters
 onready var goals
 onready var combiners 
 onready var blocks 
+onready var splitters 
 
 var cell_selected : Texture
 export var next_level : String
@@ -21,6 +22,7 @@ var save_path = SAVE_DIR + "save.dat"
 
 func _ready():
 	_initialize_redirects()
+	_initialize_splitters()
 	_initialize_sources()
 	_initialize_filters()
 	_initialize_goals()
@@ -76,7 +78,12 @@ func _initialize_redirects() -> void:
 	redirects = get_node_or_null('Redirects')
 	if redirects !=null:
 		redirects = redirects.get_children()
-		
+
+func _initialize_splitters() -> void:
+	splitters = get_node_or_null('Splitters')
+	if splitters !=null:
+		splitters = splitters.get_children()
+
 func _initialize_blocks() -> void:
 	blocks = get_node_or_null('Blocks')
 	if blocks !=null:
@@ -112,6 +119,7 @@ func deplace_lights_all()->void:
 	deplace_lights_filters()
 	deplace_lights_redirects()
 	deplace_lights_goals()
+	deplace_lights_splitters()
 
 func place_lights_sources() -> void:
 	for i in (sources.size()):
@@ -121,6 +129,11 @@ func deplace_lights_combiners() -> void:
 	if combiners != null:
 		for i in (combiners.size()):
 			combiners[i].deplace_lights()
+			
+func deplace_lights_splitters() -> void:
+	if splitters != null:
+		for i in (splitters.size()):
+			splitters[i].deplace_lights()
 
 func deplace_lights_sources() -> void:
 	if sources != null:
@@ -161,6 +174,9 @@ func get_interaction_object(var coordinate : Vector2) -> Sprite:
 	object = _get_combiner(coordinate)
 	if object!=null && object.get_being_dragged() == false:
 		return object
+	object = _get_splitter(coordinate)
+	if object!=null && object.get_being_dragged() == false:
+		return object
 	return null
 
 func get_block(var coordinate : Vector2):
@@ -178,6 +194,13 @@ func _get_redirect(var coordinate : Vector2):
 				return redirects[i]
 	return null
 	
+func _get_splitter(var coordinate : Vector2):
+	if splitters != null:
+		for i in range(splitters.size()):
+			if splitters[i].get_coordinate() == coordinate:
+				return splitters[i]
+	return null
+
 func _get_combiner(var coordinate : Vector2):
 	if combiners != null:
 		for i in range(combiners.size()):

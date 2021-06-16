@@ -151,10 +151,12 @@ func _drag_drop(event) -> void:
 		being_dragged = true
 		SOUNDS.get_node('PickUp').play()
 		self.set_scale(Vector2(1.1,1.1))
+		self.z_index = 4096
 	else:
 		SOUNDS.get_node('Drop').play()
 		self.set_scale(Vector2(1,1))
 		being_dragged = false
+		self.z_index = 0
 
 func _change_direction(event) -> void:
 	if event.is_pressed() == true:
