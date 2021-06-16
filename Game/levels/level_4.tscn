@@ -16,7 +16,7 @@ script = ExtResource( 2 )
 
 [node name="ObjectManager" type="Node2D" parent="."]
 script = ExtResource( 13 )
-next_level = "4"
+next_level = "5"
 
 [node name="Details" type="Node2D" parent="ObjectManager"]
 

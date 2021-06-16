@@ -10,7 +10,6 @@ onready var camera = get_node('/root/Game/Camera2D')
 
 const back_colors : Array = [
 	"8f5765",
-	"9c3247",
 	"f5a15d",
 	"ff9757",
 	"5b537d",
@@ -22,7 +21,6 @@ const active_colors : Array = [
 	"cf968c",
 	"d46453",
 	"d46453",
-	"d46453",
 	"928fb8",
 	"5b537d",
 	"f0c297",
@@ -30,7 +28,6 @@ const active_colors : Array = [
 	
 const inactive_colors : Array = [
 	"52294b",
-	"691749",
 	"9c3247",
 	"9c3247",
 	"392946",
@@ -55,6 +52,7 @@ func get_inactive_color() -> Color:
 func _set_back():
 	var color = back_colors[color_index]
 	color = back_colors[color_index]
+#	color = back_colors[1]
 	back.set_self_modulate(color)
 	back.set_z_index(-3000)
 	back.set_position(Vector2(528, 288))

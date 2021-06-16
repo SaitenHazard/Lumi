@@ -18,7 +18,7 @@ position = Vector2( 528, 288 )
 
 [node name="ObjectManager" type="Node2D" parent="."]
 script = ExtResource( 13 )
-next_level = "3"
+next_level = "4"
 
 [node name="Details" type="Node2D" parent="ObjectManager"]
 
