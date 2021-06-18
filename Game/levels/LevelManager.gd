@@ -19,14 +19,21 @@ func _unlock_levels():
 		var error = file.open_encrypted_with_pass(save_path, File.READ, "PASS")
 		if error == OK:
 			var player_data = file.get_var()
-#			_lock_level(int(player_data['level']))
-			_lock_level(18)
+			_lock_level(int(player_data['level']))
+			if int(player_data['level']) == 18:
+				_do_special_title()
 			return
-	_lock_level(2)
+	else:
+		_lock_level(1)
 
 func _lock_level(var level_unlocked : int):
 	for i in range(0, levels.size()):
-		if i > level_unlocked:
+		if i > level_unlocked - 1:
 			levels[i].set_block()
 		else:
 			levels[i].set_unblock()
+
+func _do_special_title():
+	yield(get_tree().create_timer(2.5), "timeout")
+	get_node('/root/Game/Light_blue/AnimationPlayer').play('beam');
+	get_node('/root/Game/Light_red/AnimationPlayer').play('beam');

@@ -20,7 +20,7 @@ _global_script_class_icons={
 
 [application]
 
-config/name="Lumi"
+config/name="fidmilit"
 run/main_scene="res://levels/level_select.tscn"
 config/use_custom_user_dir=true
 config/icon="res://icon.png"

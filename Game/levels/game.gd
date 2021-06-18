@@ -52,7 +52,6 @@ func get_inactive_color() -> Color:
 func _set_back():
 	var color = back_colors[color_index]
 	color = back_colors[color_index]
-#	color = back_colors[1]
 	back.set_self_modulate(color)
 	back.set_z_index(-3000)
 	back.set_position(Vector2(528, 288))

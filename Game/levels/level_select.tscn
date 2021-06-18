@@ -1,4 +1,4 @@
-[gd_scene load_steps=14 format=2]
+[gd_scene load_steps=21 format=2]
 
 [ext_resource path="res://scenes/Sounds.tscn" type="PackedScene" id=1]
 [ext_resource path="res://levels/game.gd" type="Script" id=2]
@@ -13,6 +13,43 @@
 [ext_resource path="res://sprites/title.png" type="Texture" id=11]
 [ext_resource path="res://levels/splash.tscn" type="PackedScene" id=12]
 [ext_resource path="res://sprites/level_select/button.png" type="Texture" id=13]
+[ext_resource path="res://sprites/lights/light_blue.png" type="Texture" id=14]
+[ext_resource path="res://sprites/lights/light_red.png" type="Texture" id=15]
+[ext_resource path="res://sprites/sources/source_blue.png" type="Texture" id=16]
+[ext_resource path="res://sprites/sources/source_red.png" type="Texture" id=17]
+[ext_resource path="res://sprites/mouse2.png" type="Texture" id=18]
+
+[sub_resource type="Animation" id=1]
+resource_name = "beam"
+length = 2.0
+tracks/0/type = "value"
+tracks/0/path = NodePath(".:scale")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 1 ),
+"transitions": PoolRealArray( 1, 1 ),
+"update": 0,
+"values": [ Vector2( 1, 1e-05 ), Vector2( 1, 5 ) ]
+}
+
+[sub_resource type="Animation" id=2]
+resource_name = "beam"
+length = 2.0
+tracks/0/type = "value"
+tracks/0/path = NodePath(".:scale")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 1 ),
+"transitions": PoolRealArray( 1, 1 ),
+"update": 0,
+"values": [ Vector2( 1, 1e-05 ), Vector2( 1, 5 ) ]
+}
 
 [node name="Game" type="Node2D"]
 script = ExtResource( 2 )
@@ -35,6 +72,33 @@ margin_right = 40.0
 margin_bottom = 40.0
 custom_fonts/font = ExtResource( 4 )
 text = "play"
+align = 1
+valign = 1
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="controls1" type="Label" parent="."]
+margin_left = 437.0
+margin_top = 484.0
+margin_right = 517.0
+margin_bottom = 564.0
+custom_fonts/font = ExtResource( 4 )
+text = "drag
+drop"
+align = 1
+valign = 1
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="controls2" type="Label" parent="."]
+margin_left = 549.0
+margin_top = 484.0
+margin_right = 629.0
+margin_bottom = 564.0
+custom_fonts/font = ExtResource( 4 )
+text = "rotate"
 align = 1
 valign = 1
 __meta__ = {
@@ -354,11 +418,43 @@ __meta__ = {
 position = Vector2( 528.976, -35.3454 )
 texture = ExtResource( 11 )
 
-[node name="SceneTransitionRect" parent="." instance=ExtResource( 8 )]
-
 [node name="Camera2D" type="Camera2D" parent="."]
 current = true
 script = ExtResource( 9 )
+
+[node name="Light_blue" type="Sprite" parent="."]
+position = Vector2( 47.8999, 96.0096 )
+scale = Vector2( 1, 1e-05 )
+texture = ExtResource( 14 )
+offset = Vector2( 0.100105, 47.9904 )
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="Light_blue"]
+anims/beam = SubResource( 1 )
+
+[node name="Light_red" type="Sprite" parent="."]
+position = Vector2( 1008, 480 )
+rotation = 3.14159
+scale = Vector2( 1, 1e-05 )
+texture = ExtResource( 15 )
+offset = Vector2( 0.100105, 47.9904 )
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="Light_red"]
+anims/beam = SubResource( 2 )
+
+[node name="Source_blue" type="Sprite" parent="."]
+position = Vector2( 48, 48 )
+rotation = 3.14159
+texture = ExtResource( 16 )
+
+[node name="Source_red" type="Sprite" parent="."]
+position = Vector2( 1008, 528 )
+texture = ExtResource( 17 )
+
+[node name="controls" type="Sprite" parent="."]
+position = Vector2( 529.681, 522.256 )
+texture = ExtResource( 18 )
+
+[node name="SceneTransitionRect" parent="." instance=ExtResource( 8 )]
 
 [node name="splash" parent="." instance=ExtResource( 12 )]
 position = Vector2( 528, 288 )

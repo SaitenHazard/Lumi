@@ -1,7 +1,8 @@
-[gd_scene load_steps=3 format=2]
+[gd_scene load_steps=4 format=2]
 
 [ext_resource path="res://sound effects/snap.wav" type="AudioStream" id=1]
 [ext_resource path="res://sound effects/not allowed.wav" type="AudioStream" id=2]
+[ext_resource path="res://sound effects/transition.wav" type="AudioStream" id=3]
 
 [node name="Sounds" type="Node2D"]
 
@@ -21,3 +22,13 @@ pitch_scale = 3.0
 [node name="Wrong" type="AudioStreamPlayer" parent="."]
 stream = ExtResource( 2 )
 volume_db = -15.0
+
+[node name="Transition" type="AudioStreamPlayer" parent="."]
+stream = ExtResource( 3 )
+volume_db = -30.0
+pitch_scale = 2.0
+
+[node name="Destroy" type="AudioStreamPlayer" parent="."]
+stream = ExtResource( 3 )
+volume_db = -30.0
+pitch_scale = 3.0

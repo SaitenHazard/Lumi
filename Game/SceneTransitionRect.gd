@@ -1,5 +1,6 @@
 extends ColorRect
 
+onready var SOUNDS = get_node('/root/Game/Sounds')
 
 onready var _anim_player := $AnimationPlayer
 
@@ -8,6 +9,7 @@ var path
 
 func transition_in(var color) -> void:
 	transition_out = false
+	SOUNDS.get_node('Transition').play()
 	self.set_self_modulate(color)
 	_anim_player.play_backwards("fade")
 	
